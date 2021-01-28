@@ -13,6 +13,11 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function create()
+    {
+        return view('projects.create');
+    }
+
     public function show(Project $project)
     {
         if (auth()->user()->isNot($project->user)) {
