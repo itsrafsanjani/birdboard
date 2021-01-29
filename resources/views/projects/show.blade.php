@@ -16,15 +16,16 @@
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-400 mb-3">Tasks</h2>
                     {{-- tasks --}}
-                    <div class="card mb-3">Lorem ipsum</div>
-                    <div class="card mb-3">Lorem ipsum</div>
-                    <div class="card mb-3">Lorem ipsum</div>
-                    <div class="card">Lorem ipsum</div>
+                    @forelse ($project->tasks as $task)
+                        <div class="card mb-3">{{ $task->body }}</div>
+                    @empty
+                        <div class="card bg-gradient-to-r from-green-400 to-blue-500">No tasks yet!</div>
+                    @endforelse
                 </div>
 
                 <div>
                     <h2 class="text-lg text-gray-400 mb-3">General Notes</h2>
-    
+
                     {{-- general notes --}}
                     <textarea class="card w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" style="min-height: 200px;" placeholder="Add general note here.."></textarea>
                 </div>
