@@ -19,8 +19,15 @@
                     @forelse ($project->tasks as $task)
                         <div class="card mb-3">{{ $task->body }}</div>
                     @empty
-                        <div class="card bg-gradient-to-r from-green-400 to-blue-500">No tasks yet!</div>
+                        <div class="text-center text-gray-400 mb-3">No tasks yet!</div>
                     @endforelse
+                        <form action="{{ $project->path() . '/tasks'}}" method="post">
+                            @csrf
+                            <div class="flex justify-between">
+                                <input class="card focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-5/6 mr-2" placeholder="Add a new task..." type="text" name="body">
+                                <button type="submit" class="btn-blue w-1/6">Add task</button>
+                            </div>
+                        </form>
                 </div>
 
                 <div>

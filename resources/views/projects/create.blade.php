@@ -6,15 +6,15 @@
     <form action="/projects" method="POST">
         @csrf
 
-        <div class="form-group">
+        <div>
             <label for="title">Title</label>
-            <input type="email" class="form-control" id="title" name="title">
+            <input type="text" id="title" name="title">
         </div>
-        <div class="form-group">
+        <div>
             <label for="description">Description</label>
-            <textarea type="password" class="form-control" id="description" name="description"></textarea>
+            <textarea id="description" name="description"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Create Project</button>
-        <a href="/projects" class="btn btn-danger">Cancel</a>
+        <button type="submit">Create Project</button>
+        <a href="/projects">Cancel</a>
     </form>
 @endsection
