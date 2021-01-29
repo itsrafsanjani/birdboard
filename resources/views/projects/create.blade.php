@@ -1,25 +1,20 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <title>Create a Project</title>
-</head>
-
-<body>
+@section('content')
     <h1>Create a Project</h1>
 
-    <form>
+    <form action="/projects" method="POST">
+        @csrf
+
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="email" class="form-control" id="title" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="email" class="form-control" id="title" name="title">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="password" class="form-control" id="description">
+            <textarea type="password" class="form-control" id="description" name="description"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Create Project</button>
+        <a href="/projects" class="btn btn-danger">Cancel</a>
     </form>
-</body>
-
-</html>
+@endsection
