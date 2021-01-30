@@ -17,7 +17,14 @@
                     <h2 class="text-lg text-gray-400 mb-3">Tasks</h2>
                     {{-- tasks --}}
                     @forelse ($project->tasks as $task)
-                        <div class="card mb-3">{{ $task->body }}</div>
+                        <div>
+                            <form action="{{ $task->path() }}" method="POST" class="card flex mb-3 items-center">
+                                @method('PATCH')
+                                @csrf
+                                <input class="focus:outline-none w-full {{ $task->completed ? 'text-gray-300' : ''}}" type="text" name="body" value="{{ $task->body }}">
+                                <input type="checkbox" name="completed" id="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : ''}}>
+                            </form>
+                        </div>
                     @empty
                         <div class="text-center text-gray-400 mb-3">No tasks yet!</div>
                     @endforelse
@@ -27,6 +34,13 @@
                                 <input class="card focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-5/6 mr-2" placeholder="Add a new task..." type="text" name="body">
                                 <button type="submit" class="btn-blue w-1/6">Add task</button>
                             </div>
+                            @if ($errors->any())
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <span class="block sm:inline">{{ $error }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </form>
                 </div>
 
