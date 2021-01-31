@@ -48,7 +48,16 @@
                     <h2 class="text-lg text-gray-400 mb-3">General Notes</h2>
 
                     {{-- general notes --}}
-                    <textarea class="card w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" style="min-height: 200px;" placeholder="Add general note here.."></textarea>
+                    <form action="{{ $project->path() }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <textarea
+                            name="notes"
+                            class="card w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mb-3"
+                            style="min-height: 200px;"
+                            placeholder="Add general note here..">{{ $project->notes }}</textarea>
+                        <button type="submit" class="btn-blue">Save</button>
+                    </form>
                 </div>
             </div>
             <div class="lg:w-1/4 px-3">
